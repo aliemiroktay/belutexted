@@ -1,5 +1,4 @@
 #include "belutexted.h"
-#include <sys/select.h>
 
 // Made from bwsh's input engine directly.
 
