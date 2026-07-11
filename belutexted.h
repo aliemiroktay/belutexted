@@ -16,7 +16,7 @@
 
 #define CTRL_KEY(k) ((k) & 0x1F)
 #define TAB_WIDTH (get_env_or_default("TAB_WIDTH", "4")[0]-48)
-#define INITIAL_BUFFER_SIZE 256
+#define INITIAL_BUFFER_SIZE 64
 
 typedef struct {
     char *data;
