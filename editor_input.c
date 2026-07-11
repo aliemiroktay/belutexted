@@ -3,7 +3,8 @@
 int getch(void);
 
 void run_command(void) {
-    char *command_run = read_input("Enter command: ");
+    char *command_run = read_input("\033[7mEnter command: ");
+    printf("\033[0m");
     if (command_run == NULL) {
         return;
     }
@@ -81,9 +82,9 @@ void show_help(void) {
         printf("\r\n");
     }
 
-    printf("\033[0m\033[?25h");
     fflush(stdout);
     getch();
+    printf("\033[0m\033[?25h");
     enable_raw_mode();
 }
 
@@ -102,7 +103,8 @@ void editor_process_keypress(void) {
         }
     } else if (c == CTRL_KEY('A')) {
         if(!valid){
-            char *filename = read_input("Enter filename to open: ");
+            char *filename = read_input("\033[7mEnter filename to open: ");
+            printf("\033[0m");
             if (filename != NULL && filename[0] != '\0') {
                 editor_open_file(filename);
                 free(filename);
