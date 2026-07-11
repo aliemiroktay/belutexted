@@ -69,5 +69,6 @@ void show_help(void);
 void editor_process_keypress(void);
 const char *get_env_or_default(const char *, const char *);
 char *read_input(char *);
+int getch(void);
 
 #endif
