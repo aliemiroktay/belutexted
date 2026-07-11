@@ -1,7 +1,5 @@
 #include "belutexted.h"
 
-int getch(void);
-
 void run_command(void) {
     char *command_run = read_input("\033[7mEnter command: ");
     printf("\033[0m");
