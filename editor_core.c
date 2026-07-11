@@ -332,20 +332,32 @@ void editor_move_cursor(char arrow) {
 
 void editor_save_file(void) {
     if (current_filename[0] == '\0') {
-        char *filename = read_input("\033[7mEnter filename to open: ");
+        char *filename = read_input("\033[7mEnter filename to save: ");
         printf("\033[0m");
-        if (filename == NULL) {
+        if (filename == NULL || filename[0] == '\0') {
+            free(filename);
             return;
         }
 
-        if (filename[0] != '\0') {
-            editor_open_file(filename);
+        strncpy(current_filename, filename, sizeof(current_filename));
+        current_filename[sizeof(current_filename) - 1] = '\0';
+
+        FILE *existing = fopen(current_filename, "r");
+        if (existing) {
+            fclose(existing);
+            printf("\033[7mFile exists. Overwrite? (y/N): ");
+            char confirm = getch();
+            printf("\033[0m");
+            if (confirm == NULL || (confirm != 'y' && confirm != 'Y')) {
+                free(filename);
+                free(confirm);
+                current_filename[0] = '\0';
+                return;
+            }
+            free(confirm);
         }
+
         free(filename);
-
-        if (current_filename[0] == '\0') {
-            return;
-        }
     }
 
     FILE *fp = fopen(current_filename, "w");
