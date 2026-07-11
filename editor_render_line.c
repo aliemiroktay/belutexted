@@ -63,7 +63,7 @@ char *editor_render_line(Line *line) {
         const char *tmp3 = get_env_or_default("SINGLE_QUOTE_COLOR", "f");
         const char *tmp4 = get_env_or_default("DOUBLE_QUOTE_COLOR", "f");
         const char *tmp5 = get_env_or_default("OPERATORS_COMP_SIGN_COLOR", "f");
-        const char *tmp6 = get_env_or_default("AMPERSAND_COLOR", "f");
+        const char *tmp6 = get_env_or_default("AMPERSAND_AT_DOLLAR_COLOR", "f");
         const char *tmp7 = get_env_or_default("SQUARE_BRACKETS_COLOR", "f");
         const char *tmp8 = get_env_or_default("CURLY_BRACES_COLOR", "f");
         const char *tmp9 = get_env_or_default("BACKSLASH_COLOR", "f");
@@ -85,8 +85,11 @@ char *editor_render_line(Line *line) {
             else if((line->data[i] == '{' || line->data[i] == '}') && tmp8[0] != 'f'){
                 append_colored_char(render, &j, line->data[i], tmp8, WITHEND);
             }
-            else if((line->data[i] == '.' || line->data[i] == ',') && tmp0[0] != 'f'){
+            else if((line->data[i] == '.' || line->data[i] == ',' || line->data[i] == ':' || line->data[i] == ';') && tmp0[0] != 'f'){
                 append_colored_char(render, &j, line->data[i], tmp0, WITHEND);
+            }
+            else if((line->data[i] == '&' || line->data[i] == '@' || line->data[i] == '$' || line->data[i] == '?') && tmp6[0] != 'f'){
+                append_colored_char(render, &j, line->data[i], tmp6, WITHEND);
             }
             else if(line->data[i] == '#' && tmp2[0] != 'f'){
                 append_colored_char(render, &j, '#', tmp2, WITHEND);
@@ -107,9 +110,9 @@ char *editor_render_line(Line *line) {
                     quote_mode = !quote_mode;
                 }
             }
-            else if(line->data[i] == '&' && tmp6[0] != 'f'){
+            /*else if(line->data[i] == '&' && tmp6[0] != 'f'){
                 append_colored_char(render, &j, '&', tmp6, WITHEND);
-            }
+            }*/
             else if(line->data[i] == '\\' && tmp9[0] != 'f'){
                 append_colored_char(render, &j, '\\', tmp6, WITHEND);
             }
