@@ -12,6 +12,7 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
+#include <sys/select.h>
 
 #define CTRL_KEY(k) ((k) & 0x1F)
 #define TAB_WIDTH (get_env_or_default("TAB_WIDTH", "4")[0]-48)
