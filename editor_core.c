@@ -332,17 +332,20 @@ void editor_move_cursor(char arrow) {
 
 void editor_save_file(void) {
     if (current_filename[0] == '\0') {
-        disable_raw_mode();
-        char filename[256] = "\0";
-        printf("\r\nEnter filename to open: ");
-        fflush(stdout);
-        if (fgets(filename, sizeof(filename), stdin) == NULL) {
-            enable_raw_mode();
+        char *filename = read_input("\033[7mEnter filename to open: ");
+        printf("\033[0m");
+        if (filename == NULL) {
             return;
         }
-        editor_open_file(filename);
-        enable_raw_mode();
-        if (current_filename[0] == '\0') return;
+
+        if (filename[0] != '\0') {
+            editor_open_file(filename);
+        }
+        free(filename);
+
+        if (current_filename[0] == '\0') {
+            return;
+        }
     }
 
     FILE *fp = fopen(current_filename, "w");
