@@ -24,7 +24,7 @@ export DOUBLE_QUOTE_COLOR="32" #green for double quote.
 export OPERATORS_COMP_SIGN_COLOR="96" #light magenta for comparison signs and operators.
 
 #export AMPERSAND_COLOR="f"
-export AMPERSAND_COLOR="95" #bright magenta for ampersand.
+export AMPERSAND_AT_DOLLAR_COLOR="95" #bright magenta for &, @, $ and ?.
 
 #export SQUARE_BRACKETS_COLOR="f"
 export SQUARE_BRACKETS_COLOR="93" #bright yellow for square brackets.
