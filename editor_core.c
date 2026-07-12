@@ -346,15 +346,13 @@ void editor_save_file(void) {
         if (existing) {
             fclose(existing);
             printf("\033[7mFile exists. Overwrite? (y/N): ");
-            char confirm = getch();
+            int confirm = getch();
             printf("\033[0m");
-            if (confirm == NULL || (confirm != 'y' && confirm != 'Y')) {
+            if (confirm != 'y' && confirm != 'Y') {
                 free(filename);
-                free(confirm);
                 current_filename[0] = '\0';
                 return;
             }
-            free(confirm);
         }
 
         free(filename);
