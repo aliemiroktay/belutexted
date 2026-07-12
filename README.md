@@ -16,3 +16,5 @@ CTRL + F to enable force exit.\
 To force exit, press CTRL + F then CTRL + X without pressing any other key. between. 
 
 ESC discards the inputs for CTRL + D, W AND A.
+
+An old and faulty version, if you wish for some reason, can be found at: https://codeberg.org/aeoktay/belutexted
